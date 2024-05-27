@@ -1,29 +1,36 @@
-<script setup>
-import { ref, computed } from 'vue'
+<!-- <template>
+    <div>
+        using v-if conditionally remove the element from dom itself
+        <h1 v-if="colour === 'black'">Black</h1>
+        <h1 style="color: red;" v-else-if="colour === 'red'">Red</h1>
+        <h1 style="color: blue;" v-else>Blue</h1>
+        <button @click="changeColour">Change Colour</button>
+    </div>
+</template> -->
 
-const count = ref(0)
-
-const square = computed(() => count.value ** 2) // we need to give a function to computed
-
-function increment() {
-    count.value++
-}
-
-function decrement() {
-    count.value--
-}
-</script>
 
 <template>
     <div>
-        <!-- <h1>Count: {{ obj.count }}</h1>
-        <button @click="obj.count++">Increment</button>
-        <button @click="obj.count--">Decrement</button> -->
-
-        <h1>Count: {{ count }}</h1>
-        <h1>Square: {{ square }}</h1>
-        <button @click="increment">Increment</button>
-        <button @click="decrement">Decrement</button>
-
+        using v-show conditionally hide the element using display none property but element still exists in dom
+        <h1 v-show="colour === 'black'">Black</h1>
+        <h1 style="color: red;" v-show="colour === 'red'">Red</h1>
+        <h1 style="color: blue;" v-show="colour === 'blue'">Blue</h1>
+        <button @click="changeColour">Change Colour</button>
     </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const colour = ref("black")
+
+const changeColour = () => {
+    if (colour.value === 'black') {
+        colour.value = 'red'
+    } else if (colour.value === 'red') {
+        colour.value = 'blue'
+    } else {
+        colour.value = 'black'
+    }
+}
+</script>
